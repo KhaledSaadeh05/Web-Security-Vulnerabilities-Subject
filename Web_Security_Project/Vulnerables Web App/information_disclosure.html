@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Information Disclosure</title>
+    <link rel="stylesheet" href="information_disclosure.css" />
+  </head>
+  <body>
+    <header class="hero">
+      <div class="container">
+        <h1>Information Disclosure</h1>
+        <p>
+          A common web security vulnerability in which sensitive or internal
+          information is exposed to unauthorized users.
+        </p>
+      </div>
+    </header>
+
+    <main class="container">
+      <section class="content-card">
+        <h2>Overview</h2>
+        <p>
+          Information Disclosure happens when a web application reveals data
+          that should not be publicly available. This may include system
+          details, configuration information, file paths, developer messages,
+          backup files, or internal pages.
+        </p>
+        <p>
+          Even if the attacker cannot directly change data, exposed information
+          can still help in understanding the structure of the system and
+          identifying further weaknesses.
+        </p>
+      </section>
+
+      <section class="content-card">
+        <h2>Examples of Exposed Information</h2>
+        <ul>
+          <li>Error messages that reveal file paths or query details</li>
+          <li>Debug pages left accessible to users</li>
+          <li>Backup files stored inside public directories</li>
+          <li>Configuration files containing usernames or passwords</li>
+          <li>Hidden internal paths listed in public resources</li>
+        </ul>
+      </section>
+
+      <section class="content-card">
+        <h2>Why It Is Dangerous</h2>
+        <p>
+          This vulnerability is dangerous because attackers can collect valuable
+          technical information about the application and the server
+          environment. That information can be used to support additional
+          attacks or make other vulnerabilities easier to exploit.
+        </p>
+      </section>
+
+      <section class="content-card">
+        <h2>Prevention</h2>
+        <ul>
+          <li>Use generic error messages for users</li>
+          <li>Disable debug mode in production</li>
+          <li>Do not store backup files in public folders</li>
+          <li>Restrict access to internal resources</li>
+          <li>Review exposed files and directories regularly</li>
+        </ul>
+      </section>
+
+      <div class="back-link-box">
+        <a href="HomePage.html" class="back-link">Back to Home Page</a>
+      </div>
+    </main>
+
+    <!-- important link: http://127.0.0.1:5500/information_disclosure.html/admin -->
+    <div id="debugPanel" style="display: none"></div>
+    <script src="information_disclosure.js" defer></script>
+  </body>
+</html>

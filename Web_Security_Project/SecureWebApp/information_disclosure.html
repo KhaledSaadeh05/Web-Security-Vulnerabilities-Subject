@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Information Disclosure — Secure</title>
+  <link rel="stylesheet" href="information_disclosure.css" />
+</head>
+<body>
+  <header class="hero">
+    <div class="container">
+      <h1>Information Disclosure</h1>
+      <p>
+        Secure version — sensitive information is never exposed to users,
+        regardless of the input or URL parameters supplied.
+      </p>
+    </div>
+  </header>
+
+  <main class="container">
+
+    <section class="content-card">
+      <h2>What Was Fixed</h2>
+      <p>
+        The vulnerable version exposed stack traces, file paths, database credentials,
+        and an unprotected admin panel. This secure version applies the following fixes:
+      </p>
+      <ul>
+        <li>The <code>/admin</code> and <code>/debug</code> routes return a generic 404 — they no longer exist publicly.</li>
+        <li>Error messages are generic and never include file paths, query text, or stack traces.</li>
+        <li>No debug panel is rendered regardless of URL parameters such as <code>?debug=true</code> or <code>?admin=true</code>.</li>
+        <li>No sensitive information is embedded in HTML comments.</li>
+        <li>The <code>robots.txt</code> file no longer hints at internal paths.</li>
+      </ul>
+    </section>
+
+    <section class="content-card">
+      <h2>Try It — Product Lookup</h2>
+      <p>
+        Enter any product code below. Errors return a generic message — no internal
+        details are revealed.
+      </p>
+      <div style="margin-top:16px;">
+        <input type="text" id="productCode" placeholder="e.g. PRD-1001" style="
+          width:100%; padding:11px 12px; border-radius:8px;
+          border:1px solid #334155; background:#0f172a; color:#fff;
+          outline:none; font-size:1rem; margin-bottom:10px;" />
+        <button id="checkProductBtn" style="
+          width:100%; padding:12px; border:none; border-radius:8px;
+          background:#38bdf8; color:#0f172a; font-weight:bold; cursor:pointer;">
+          Check Product
+        </button>
+      </div>
+      <div id="resultBox" style="display:none; margin-top:14px; padding:14px;
+        border-radius:10px; background:#14532d; color:#bbf7d0; font-weight:bold;"></div>
+      <div id="errorBox"  style="display:none; margin-top:14px; padding:14px;
+        border-radius:10px; background:#1e293b; color:#94a3b8; font-weight:bold;"></div>
+    </section>
+
+    <section class="content-card">
+      <h2>Security Techniques Used</h2>
+      <ul>
+        <li><strong>Generic error messages</strong> — users see "An error occurred", never a stack trace.</li>
+        <li><strong>Route removal</strong> — admin and debug endpoints are completely absent from the server.</li>
+        <li><strong>No sensitive HTML comments</strong> — source code contains no internal URLs or credentials.</li>
+        <li><strong>URL parameter sanitisation</strong> — <code>?debug</code> / <code>?admin</code> parameters are ignored entirely.</li>
+        <li><strong>robots.txt hardened</strong> — no internal paths are disclosed to crawlers.</li>
+      </ul>
+    </section>
+
+    <div class="back-link-box">
+      <a href="HomePage.html" class="back-link">Back to Home Page</a>
+    </div>
+  </main>
+
+  <script src="information_disclosure.js"></script>
+</body>
+</html>

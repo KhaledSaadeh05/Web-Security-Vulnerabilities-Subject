@@ -1,0 +1,17 @@
+{
+  "name": "secure_web_app",
+  "version": "1.0.0",
+  "description": "Secure version of the Web Security Project",
+  "main": "server.js",
+  "dependencies": {
+    "express": "^5.2.1",
+    "mysql2": "^3.22.1"
+  },
+  "scripts": {
+    "start": "node server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs"
+}

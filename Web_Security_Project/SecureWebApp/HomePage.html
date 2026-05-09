@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Secure Vulnerabilities Web App</title>
+  <link rel="stylesheet" href="HomePage.css" />
+</head>
+<body>
+  <header class="hero">
+    <div class="container">
+      <h1>Secure Web App</h1>
+      <p class="hero-text">
+        A secure version of the educational web application — demonstrating how proper
+        security controls prevent common web vulnerabilities.
+      </p>
+      <a href="#overview" class="hero-btn">Start Exploring</a>
+    </div>
+  </header>
+
+  <main>
+    <section id="overview" class="section">
+      <div class="container">
+        <h2>Project Overview</h2>
+        <p>
+          This is the <strong>secure version</strong> of the Web Security project.
+          Every vulnerability present in the vulnerable version has been fixed here
+          using industry-standard best practices.
+        </p>
+        <p>
+          Protections are in place for:
+          <strong>Information Disclosure</strong>,
+          <strong>SQL Injection</strong>, and
+          <strong>XXE Injection</strong>.
+        </p>
+      </div>
+    </section>
+
+    <section class="section alt-section">
+      <div class="container">
+        <h2>Security Measures Applied</h2>
+        <div class="objectives">
+          <div class="objective-card">
+            <h3>Parameterized Queries</h3>
+            <p>All database queries use prepared statements — user input never touches SQL syntax.</p>
+          </div>
+          <div class="objective-card">
+            <h3>Input Validation</h3>
+            <p>Every input is validated against an allowlist before being processed.</p>
+          </div>
+          <div class="objective-card">
+            <h3>Entity Processing Disabled</h3>
+            <p>XML parsing rejects DOCTYPE and external entity declarations entirely.</p>
+          </div>
+          <div class="objective-card">
+            <h3>No Sensitive Exposure</h3>
+            <p>Error messages are generic. Admin and debug routes do not exist.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <h2>Protected Pages</h2>
+
+        <div class="vulnerability-card">
+          <h3>1. Information Disclosure — Fixed</h3>
+          <p>
+            Admin and debug routes return 404. Error messages reveal no internal details.
+            Debug panels and stack traces are completely removed.
+          </p>
+          <a href="information_disclosure.html" class="page-link">Open Page</a>
+        </div>
+
+        <div class="vulnerability-card">
+          <h3>2. SQL Injection — Fixed</h3>
+          <p>
+            Login and product queries use parameterized statements.
+            Category input is validated against an allowlist before any query runs.
+          </p>
+          <a href="sql_injection.html" class="page-link">Open Page</a>
+        </div>
+
+        <div class="vulnerability-card">
+          <h3>3. XXE Injection — Fixed</h3>
+          <p>
+            All XML endpoints scan for DOCTYPE, SYSTEM, ENTITY, and XInclude patterns
+            and reject them with a security message before any parsing occurs.
+          </p>
+          <a href="xxe_injection.html" class="page-link">Open Page</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <p>Secure Web Security Project - The University Of Jordan</p>
+    </div>
+  </footer>
+
+  <script src="HomePage.js"></script>
+</body>
+</html>

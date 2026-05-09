@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SQL Injection Demo Store</title>
+  <link rel="stylesheet" href="sql_injection.css" />
+</head>
+<body>
+  <header class="hero">
+    <div class="container">
+      <h1>SQL Injection Demo Store</h1>
+      <p>
+        This page demonstrates a database-connected store and login page
+        for the Web Security project.
+      </p>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="section-card">
+      <h2>Store Categories</h2>
+      <p class="section-text">
+        Select a category to load products from the database.
+      </p>
+
+      <div class="category-links">
+        <a href="sql_injection.html?category=all">All</a>
+        <a href="sql_injection.html?category=tech">Tech</a>
+        <a href="sql_injection.html?category=clothes">Clothes</a>
+        <a href="sql_injection.html?category=accessories">Accessories</a>
+      </div>
+
+      <div class="current-category-box">
+        <span>Current Category:</span>
+        <strong id="currentCategory">All</strong>
+      </div>
+
+      <div id="filterMessage" class="message-box"></div>
+    </section>
+
+    <section class="products-section">
+      <h2>Products</h2>
+      <div id="productsGrid" class="products-grid"></div>
+    </section>
+
+    <section class="section-card">
+      <h2>Login</h2>
+      <p class="section-text">
+        This login form is connected to the users table in the database.
+      </p>
+
+      <form id="loginForm">
+        <div class="input-group">
+          <label for="username">Username</label>
+          <input
+            type="text"
+            id="username"
+            name="username"
+            placeholder="Enter username"
+          />
+        </div>
+
+        <div class="input-group">
+          <label for="password">Password</label>
+          <input
+            type="text"
+            id="password"
+            name="password"
+            placeholder="Enter password"
+          />
+        </div>
+
+        <button type="submit">Login</button>
+      </form>
+
+      <div id="loginResult" class="message-box"></div>
+    </section>
+
+    <div class="back-link-box">
+      <a href="HomePage.html" class="back-link">Back to Home Page</a>
+    </div>
+  </main>
+
+  <script src="sql_injection.js"></script>
+</body>
+</html>

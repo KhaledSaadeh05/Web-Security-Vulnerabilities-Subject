@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vulnerabilities Web App</title>
+  <link rel="stylesheet" href="HomePage.css" />
+</head>
+<body>
+  <header class="hero">
+    <div class="container">
+      <h1>Vulnerabilities Web App</h1>
+      <p class="hero-text">
+        An educational web application designed to demonstrate common web security
+        vulnerabilities in a controlled environment.
+      </p>
+      <a href="#overview" class="hero-btn">Start Exploring</a>
+    </div>
+  </header>
+
+  <main>
+    <section id="overview" class="section">
+      <div class="container">
+        <h2>Project Overview</h2>
+        <p>
+          This web application was developed as part of a Web Security project.
+          It demonstrates how security flaws may appear when proper protection is missing.
+        </p>
+        <p>
+          The application includes three vulnerabilities:
+          <strong>Information Disclosure</strong>,
+          <strong>SQL Injection</strong>, and
+          <strong>XXE Injection</strong>.
+        </p>
+      </div>
+    </section>
+
+    <section class="section alt-section">
+      <div class="container">
+        <h2>Project Objectives</h2>
+        <div class="objectives">
+          <div class="objective-card">
+            <h3>Understand the Vulnerability</h3>
+            <p>Explain how each vulnerability works.</p>
+          </div>
+
+          <div class="objective-card">
+            <h3>Observe the Impact</h3>
+            <p>Show the effect of insecure coding.</p>
+          </div>
+
+          <div class="objective-card">
+            <h3>Compare Later</h3>
+            <p>Compare with the secure web application.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <h2>Included Vulnerabilities</h2>
+
+        <div class="vulnerability-card">
+          <h3>1. Information Disclosure</h3>
+          <p>
+            Exposure of sensitive system information to unauthorized users.
+          </p>
+          <a href="information_disclosure.html" class="page-link">
+            Open Page
+          </a>
+        </div>
+
+        <div class="vulnerability-card">
+          <h3>2. SQL Injection</h3>
+          <p>
+            Injection of malicious SQL queries through user input.
+          </p>
+          <a href="sql_injection.html" class="page-link">
+            Open Page
+          </a>
+        </div>
+
+        <div class="vulnerability-card">
+          <h3>3. XXE Injection</h3>
+          <p>
+            Exploiting insecure XML parsing to access internal resources.
+          </p>
+          <a href="xxe_injection.html" class="page-link">
+            Open Page
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <p>Web Security Project - The University Of Jordan</p>
+    </div>
+  </footer>
+
+  <script src="HomePage.js"></script>
+</body>
+</html>

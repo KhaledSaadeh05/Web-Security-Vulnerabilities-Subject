@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SQL Injection — Secure Demo Store</title>
+  <link rel="stylesheet" href="sql_injection.css" />
+</head>
+<body>
+  <header class="hero">
+    <div class="container">
+      <h1>Secure Demo Store</h1>
+      <p>
+        SQL Injection is prevented here through parameterized queries and
+        input allowlist validation. Try any injection payload — it will be blocked.
+      </p>
+    </div>
+  </header>
+
+  <main class="container">
+
+    <section class="section-card">
+      <h2>What Was Fixed</h2>
+      <p class="section-text" style="text-align:left; max-width:100%; color:#cbd5e1; margin-bottom:12px;">
+        The vulnerable version concatenated user input directly into SQL queries.
+        This version uses <strong style="color:#38bdf8">parameterized statements</strong> and
+        an <strong style="color:#38bdf8">allowlist</strong> for category values — injection is structurally impossible.
+      </p>
+    </section>
+
+    <section class="section-card">
+      <h2>Store Categories</h2>
+      <p class="section-text">
+        Only the four valid categories below are accepted. Any other value is rejected before reaching the database.
+      </p>
+
+      <div class="category-links">
+        <a href="sql_injection.html?category=all">All</a>
+        <a href="sql_injection.html?category=tech">Tech</a>
+        <a href="sql_injection.html?category=clothes">Clothes</a>
+        <a href="sql_injection.html?category=accessories">Accessories</a>
+      </div>
+
+      <div class="current-category-box">
+        <span>Current Category:</span>
+        <strong id="currentCategory">All</strong>
+      </div>
+
+      <div id="filterMessage" class="message-box"></div>
+    </section>
+
+    <section class="products-section">
+      <h2>Products</h2>
+      <div id="productsGrid" class="products-grid"></div>
+    </section>
+
+    <section class="section-card">
+      <h2>Login</h2>
+      <p class="section-text">
+        Login uses a parameterized query. SQL payloads like <code style="color:#38bdf8">administrator'--</code> are treated as literal strings, not SQL.
+      </p>
+
+      <form id="loginForm">
+        <div class="input-group">
+          <label for="username">Username</label>
+          <input type="text" id="username" name="username" placeholder="Enter username" />
+        </div>
+        <div class="input-group">
+          <label for="password">Password</label>
+          <input type="text" id="password" name="password" placeholder="Enter password" />
+        </div>
+        <button type="submit">Login</button>
+      </form>
+
+      <div id="loginResult" class="message-box"></div>
+    </section>
+
+    <div class="back-link-box">
+      <a href="HomePage.html" class="back-link">Back to Home Page</a>
+    </div>
+  </main>
+
+  <script src="sql_injection.js"></script>
+</body>
+</html>

@@ -1,0 +1,104 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif;
+}
+body {
+  background: #0f172a;
+  color: #ffffff;
+  line-height: 1.7;
+  min-height: 100vh;
+}
+.container {
+  width: 90%;
+  max-width: 1000px;
+  margin: auto;
+}
+.hero {
+  background: linear-gradient(135deg, #1e293b, #0f172a);
+  text-align: center;
+  padding: 70px 20px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+.hero h1 {
+  font-size: 2.7rem;
+  color: #38bdf8;
+  margin-bottom: 12px;
+}
+.hero p {
+  max-width: 760px;
+  margin: auto;
+  color: #cbd5e1;
+  font-size: 1.05rem;
+}
+.content-card,
+.back-link-box {
+  background: #1e293b;
+  margin-top: 30px;
+  padding: 28px;
+  border-radius: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+}
+.content-card h2 {
+  color: #38bdf8;
+  margin-bottom: 15px;
+  font-size: 1.5rem;
+}
+.content-card p,
+.content-card li {
+  color: #e2e8f0;
+  font-size: 1rem;
+}
+.content-card ul {
+  padding-left: 22px;
+  margin-top: 10px;
+}
+.content-card li {
+  margin-bottom: 10px;
+}
+.back-link-box {
+  text-align: center;
+  margin-bottom: 40px;
+}
+.back-link {
+  display: inline-block;
+  text-decoration: none;
+  background: #38bdf8;
+  color: #0f172a;
+  padding: 12px 22px;
+  border-radius: 8px;
+  font-weight: bold;
+  transition: 0.3s ease;
+}
+.back-link:hover {
+  background: #0ea5e9;
+}
+@media (max-width: 768px) {
+  .hero h1 {
+    font-size: 2.1rem;
+  }
+
+  .hero p {
+    font-size: 0.95rem;
+  }
+  .content-card,
+  .back-link-box {
+    padding: 20px;
+  }
+  .content-card h2 {
+    font-size: 1.3rem;
+  }
+}
+/* Add this to your information_disclosure.css */
+#debugPanel {
+  background: #1e293b; /* Matches your cards */
+  border: 2px solid #ef4444; /* Bright red to show it's a security risk */
+  padding: 20px;
+  margin: 20px auto;
+  border-radius: 12px;
+  width: 90%;
+  max-width: 1000px;
+  color: #f87171; /* Reddish text for the sensitive data */
+}
